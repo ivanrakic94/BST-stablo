@@ -1,25 +1,26 @@
 
 public class SortiranoBinarnoStablo {
 	
-	CvorStabla koren;
+	CvorStabla koren=null;
 	
 	public void ubaci(int kljuc, String vr, CvorStabla cvor) {
 		if (koren == null) {
 			koren = new CvorStabla(kljuc, vr, null, null);
+			return;
 		}
-		
-		CvorStabla pom = koren;
-		if (pom.kljuc < kljuc) {
-			if (pom.desno == null) {
-				pom.desno = new CvorStabla(kljuc, vr, null, null);
+		if (cvor.kljuc < kljuc) {
+			if (cvor.desno == null) {
+				cvor.desno = new CvorStabla(kljuc, vr, null, null);
+				return;
 			} else {
-				ubaci(kljuc, vr, pom.desno);
+				ubaci(kljuc, vr, cvor.desno);
 			}
 		} else {
-			if (pom.levo == null) {
-				pom.levo = new CvorStabla(kljuc, vr, null, null);
+			if (cvor.levo == null) {
+				cvor.levo = new CvorStabla(kljuc, vr, null, null);
+				return;
 			} else {
-				ubaci(kljuc, vr, pom.levo);
+				ubaci(kljuc, vr, cvor.levo);
 			}
 		}
 	}
@@ -33,14 +34,13 @@ public class SortiranoBinarnoStablo {
 			return null;
 		}
 		
-		CvorStabla pom = koren;
-		if (pom.kljuc == k) {
-			return pom.vrednost;
+		if (c.kljuc == k) {
+			return c.vrednost;
 		}
-		if (pom.kljuc < k) {
-			return pronadji(k, pom.desno);
+		if (c.kljuc < k) {
+			return pronadji(k, c.desno);
 		} else {
-			return pronadji(k, pom.levo);
+			return pronadji(k, c.levo);
 		}
 		
 	}
